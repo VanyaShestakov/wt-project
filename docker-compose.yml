@@ -1,0 +1,17 @@
+
+    version: '2'
+    services:
+      nginx:
+        image: nginx:latest
+        ports:
+          - "8000:80"
+        volumes:
+          - ./hosts:/etc/nginx/conf.d
+          - ./src:/var/src
+          - ./logs:/var/log/nginx
+        links:
+          - php
+      php:
+        build: ./images/php
+        volumes:
+          - ./src:/var/src
